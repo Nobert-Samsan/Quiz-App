@@ -1,0 +1,17 @@
+.quiz-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  .quiz-container {
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 468px) {
+  .quiz-container {
+    padding: 0.25rem;
+  }
+}
