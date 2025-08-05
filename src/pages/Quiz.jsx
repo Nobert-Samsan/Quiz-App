@@ -4,14 +4,17 @@ import QuestionCard from "../components/QuestionCard";
 import { questions } from "../data/questions";
 import "./Quiz.css";
 
+
 const Quiz = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [score, setScore] = useState(0);
   const navigate = useNavigate();
 
-  const handleAnswer = (selectedOption) => {
+  const handleAnswer = (selectedOptionId) => {
     const currentQuestion = questions[currentIndex];
-    if (selectedOption === currentQuestion.answer) {
+    const isCorrect = selectedOptionId === currentQuestion.answerId;
+
+    if (isCorrect) {
       setScore(score + 1);
     }
 
@@ -19,7 +22,12 @@ const Quiz = () => {
     if (nextIndex < questions.length) {
       setCurrentIndex(nextIndex);
     } else {
-      navigate("/score", { state: { score: score + (selectedOption === currentQuestion.answer ? 1 : 0), total: questions.length } });
+      navigate("/score", {
+        state: {
+          score: score + (isCorrect ? 1 : 0),
+          total: questions.length
+        }
+      });
     }
   };
 
